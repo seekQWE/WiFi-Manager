@@ -1,0 +1,122 @@
+﻿<Page
+    x:Class="WiFi_Manager.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WiFi_Manager"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel
+            x:Name="MainPageStackPanel"
+            Loaded="MainPageStackPanel_Loaded"
+            Background="Gray">
+            <TextBlock 
+                x:Name="titleTextBlock"
+                Text="{Binding ElementName=accountTextBox, Path=Text}"
+                FontSize="36"
+                Margin="0,0,0,0"
+                HorizontalAlignment="Center" 
+                />
+
+            <StackPanel
+                x:Name="idInputStackPanel">
+                <TextBox
+                    x:Name="accountTextBox" 
+                    Margin="20, 10, 20, 0"
+                    PlaceholderText="学号"
+                    FontSize="25"
+                    InputScope="Number" 
+                    MaxLength="12"
+                    TextChanged="accountTextBox_TextChanged"
+                    />
+                <PasswordBox
+                    x:Name="passwordBox"
+                    Margin="20, 10, 20, 0" 
+                    PlaceholderText="密码"
+                    FontSize="25"
+                    PasswordChanged="passwordBox_PasswordChanged"
+                    />
+            </StackPanel>
+
+            <Button
+                x:Name="changeIDButton"
+                Visibility="Collapsed"
+                Content="更换账号" 
+                FontSize="25"
+                FontWeight="Bold"
+                Margin="20, 0, 20, 0" 
+                Click="changeIDButton_Click"
+                />
+
+            <ToggleSwitch 
+                x:Name="saveAccountToggleSwitch"
+                Visibility="Collapsed"
+                Header="保存学号"
+                IsEnabled="False"
+                IsOn="True"
+                Margin="20, 0, 20, 0"
+                Loaded="activateSetting"
+                Toggled="saveSetting" 
+                />
+            <ToggleSwitch 
+                x:Name="savePasswordToggleSwitch"
+                Header="保存密码"
+                IsOn="True"
+                Margin="20, 0, 20, 0" 
+                Loaded="activateSetting"
+                Toggled="saveSetting"
+                />
+            <ToggleSwitch
+                x:Name="autoLoginToggleSwitch" 
+                Header="自动登录"
+                IsOn="True"
+                Margin="20, 0, 20, 0" 
+                Loaded="activateSetting"
+                Toggled="saveSetting"
+                />
+            <ToggleSwitch
+                x:Name="keepOnlineToggleSwitch"
+                Visibility="{Binding ElementName=changeIDButton, Path=Visibility}"
+                Header="保持在线"
+                IsOn="False"
+                Margin="20, 0, 20, 0" 
+                Toggled="keepOnlineToggleSwitch_Toggled"
+                />
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button
+                    x:Name="loginButton"
+                    HorizontalAlignment="Stretch"
+                    Margin="20,0,10,0"
+                    Grid.Column="0"
+                    Content="登入"
+                    FontSize="25"
+                    Click="loginButton_Click"
+                    />
+                <Button
+                    x:Name="logoutButton"
+                    HorizontalAlignment="Stretch"
+                    Margin="10,0,20,0"
+                    Grid.Column="1"
+                    Content="登出"
+                    FontSize="25"
+                    Click="logoutButton_Click"
+                    />
+            </Grid>
+
+            <TextBlock
+                x:Name="loginResponseTextBlock"
+                FontSize="25"
+                Margin="20, 10, 20, 0"
+                HorizontalAlignment="Left"
+                TextWrapping="Wrap"
+                />
+        </StackPanel>
+    </Grid>
+</Page>
